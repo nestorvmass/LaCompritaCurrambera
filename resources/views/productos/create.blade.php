@@ -49,8 +49,8 @@
 
             <div class="row g-3">
                 <div class="form-floating col-md-4 ">
-                    <input class="btn btn-success " type="submit" name="guardarp" id="guardarp" value="Guardar Producto">
-                    <input class="btn btn-warning" type="submit" name="cancelarp" id="cancelarp" value="Cancelar">
+                    <input class="btn btn-success " type="submit" value="Guardar">
+                    <input class="btn btn-warning" type="submit"  value="Cancelar">
                 </div>
             </div>
         </form>

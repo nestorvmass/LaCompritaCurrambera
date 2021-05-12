@@ -14,8 +14,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
-        return view('productos.index');
+        //Se debe agregar la variable del usuario vendedor
+
+        $productos['productos'] = Producto::paginate(5);
+        return view('productos.index', $productos);
     }
 
     /**
@@ -39,7 +41,15 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-        $productodata = request()->all();
+        $productodata = request()->except('_token');
+        $productodata['id_vendedor'] = 1; // Pendiente el id del vendedor
+
+        if($request->hasFile('imagen_producto')){
+            // se debe modificar esto se debe agregar
+            $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+        }
+        $productodata['estado_producto'] = False;
+        Producto::insert($productodata);
         return response()->json($productodata);
     }
 
@@ -63,6 +73,9 @@ class ProductoController extends Controller
     public function edit(Producto $producto)
     {
         //
+
+
+        return view('productos.edit');
     }
 
     /**
@@ -83,8 +96,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
+
+        Producto::destroy($id);
+        return redirect('producto');
     }
 }
