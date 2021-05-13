@@ -17,7 +17,7 @@
                             <p class="card-text">Precio: $.{{$producto->precio_producto}}</p>
                             <p class="card-text">Cantidad Disp. {{$producto->stock_producto}}</p>
                             <div class="row">
-                                @if ($producto->estado_producto == false)
+                                @if ($producto->estado_producto == false && $producto->stock_producto >=1)
                                     <div  class="col md-2">
                                         <form action="{{url('/producto/'.$producto->id)}}" method="POST">
                                             @csrf
@@ -25,8 +25,8 @@
                                             <input type="number" hidden name="estado_producto" id="estado_producto" value="1">
                                             <input type="submit"class="btn btn-primary btn-md" value="Publicar">
                                         </form>
-                                    </div>                                        
-                                @else
+                                    </div>
+                                @elseif ($producto->estado_producto == True && $producto->stock_producto >=1)                                        
                                     <div  class="col md-2">
                                         <form action="{{url('/producto/'.$producto->id)}}" method="post">
                                             @csrf
