@@ -70,12 +70,12 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
         //
 
-
-        return view('productos.edit');
+        $producto = Producto::find($id);
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -85,10 +85,37 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $productodata = request()->except(['_token','_method']);
+        // return response()->json($productodata);
+        if($request->hasFile('imagen_producto')){
+            // se debe modificar esto se debe agregar
+            $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+        }
+        Producto::where('id', '=',$id)->update($productodata);
+        
+        return redirect('producto');
     }
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  \App\Models\Producto  $producto
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function publicar(Request $request, $id)
+    // {
+
+    //     $productodata = request()->except(['_token','_method','precio_producto','stock_producto','desc_producto','id_vendedor']);
+    //     if($request->hasFile('imagen_producto')){
+    //         // se debe modificar esto se debe agregar
+    //         $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+    //     }
+    //     Producto::where('id', '=',$id)->update($productodata);
+        
+    //     return redirect('producto');
+    // }
 
     /**
      * Remove the specified resource from storage.
