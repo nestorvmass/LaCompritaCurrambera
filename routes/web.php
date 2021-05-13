@@ -28,3 +28,6 @@ Route::get('/', function () {
 // Route::get('/producto/create', [ProductoController::class, 'create']);
 
 Route::resource('producto', ProductoController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
