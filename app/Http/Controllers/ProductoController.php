@@ -16,7 +16,7 @@ class ProductoController extends Controller
     {
         //Se debe agregar la variable del usuario vendedor
 
-        $productos['productos'] = Producto::paginate(5);
+        $productos['productos'] = Producto::paginate(10);
         return view('productos.index', $productos);
     }
 
@@ -50,7 +50,9 @@ class ProductoController extends Controller
         }
         $productodata['estado_producto'] = False;
         Producto::insert($productodata);
-        return response()->json($productodata);
+        // return response()->json($productodata);
+
+        return redirect('producto');
     }
 
     /**
