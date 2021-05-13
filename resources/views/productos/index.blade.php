@@ -30,6 +30,7 @@
                                     <div  class="col md-2">
                                         <form action="{{url('/producto/'.$producto->id)}}" method="post">
                                             @csrf
+                                            
                                             {{method_field('PATCH')}}
                                             <input type="number" hidden name="estado_producto" id="estado_producto" value="0">
                                             <input type="submit"class="btn btn-primary btn-md" value="Deshabilitar">
