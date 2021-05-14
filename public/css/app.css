@@ -1,6 +1,11 @@
 .trans{
-    width: 400px;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-  }
+  width: 400px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.card-img-top {
+  height: 15rem;
+  object-fit: cover;
+}
