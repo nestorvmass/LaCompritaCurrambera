@@ -42,7 +42,7 @@
                         <ul>
                           <form method="get" class="mt-2 d-flex" >
                             <input class="form-control me-2" name="search" type="search" placeholder="busqueda de producto" aria-label="Search">
-                            <button class="btn btn-outline-success"  name="search" type="search">Buscar</button>
+                            <button class="btn btn-outline-success"  type="submit">Buscar</button>
                         </form>
                         </ul>
                       </div>

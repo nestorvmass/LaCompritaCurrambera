@@ -12,13 +12,30 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //Se debe agregar la variable del usuario vendedor
 
-        $productos['productos'] = Producto::paginate(10);
+        // $productos['productos'] = Producto::paginate(10);
        
-        return view('productos.index', $productos);
+        // return view('productos.index', $productos);
+
+
+
+
+        if($request->get('search')){
+            $query = trim($request->get('search'));
+            // return response()->json($query);
+            $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
+            ->orderBy('nom_producto', 'asc')
+            ->get();
+            return view('productos.index', $productos);
+
+
+        }else{
+            $productos['productos'] = Producto::paginate(10);
+            return view('productos.index', $productos);
+        }
     }
 
     /**
