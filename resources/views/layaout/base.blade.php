@@ -12,7 +12,7 @@
     <title>{{ config('app.name') }} - @yield('titulopagina')</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
             </form>
           </div>
         </div>
-      </nav>
+      </nav> --}}
     @yield('contenido')
 
 </body>
