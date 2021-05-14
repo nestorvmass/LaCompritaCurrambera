@@ -18,8 +18,10 @@
 <body>
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
           <div class="container">
+            <img class="img-fluid" width="30" height="24" src="https://image.flaticon.com/icons/png/512/423/423503.png" alt="" srcset="">
               <a class="navbar-brand" href="{{ url('/') }}">
                   {{ config('app.name', 'Laravel') }}
+                  
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                   <span class="navbar-toggler-icon"></span>
@@ -35,9 +37,8 @@
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                           
-                            <a class="nav-link active"  aria-current="page" href="">Inicio</a>
-                         
-                         
+                            <a class="nav-link active"  aria-current="page" href="/">Inicio</a>
+
                         </ul>
                         <ul>
                           <form method="get" class="mt-2 d-flex" >
@@ -67,14 +68,13 @@
                               </ul>
                               <ul>
                                 <form class="mt-2 d-flex">
-                                
-                                <input class="form-control me-2" name="search" type="search" placeholder="busqueda de producto" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                  <input class="form-control me-2" name="search" type="search" placeholder="busqueda de producto" aria-label="Search">
+                                  <button class="btn btn-outline-success" type="submit">Buscar</button>
                               </form>
                               </ul>
                           @endif
                       @else
-                      <li class="nav-item dropdown">
+                      
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
@@ -91,7 +91,7 @@
                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                           </form>
-                        </li>
+                        
                       @endguest
                   </ul>
               </div>
@@ -100,8 +100,7 @@
     @yield('contenido')
 
 </body>
-<!-- JavaScript Bundle with Popper -->
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script> --}}
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
