@@ -34,15 +34,15 @@
                       </button>
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                          <li class="nav-item" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <a class="nav-link active"  aria-current="page" href="/">Inicio</a>
-                          </li>
+                          
+                            <a class="nav-link active"  aria-current="page" href="">Inicio</a>
+                         
                          
                         </ul>
                         <ul>
-                          <form class="mt-2 d-flex">
-                          <input class="form-control me-2" type="search" placeholder="busqueda de producto" aria-label="Search">
-                          <button class="btn btn-outline-success" type="submit">Buscar</button>
+                          <form method="get" class="mt-2 d-flex" >
+                            <input class="form-control me-2" name="search" type="search" placeholder="busqueda de producto" aria-label="Search">
+                            <button class="btn btn-outline-success"  name="search" type="search">Buscar</button>
                         </form>
                         </ul>
                       </div>
@@ -67,7 +67,8 @@
                               </ul>
                               <ul>
                                 <form class="mt-2 d-flex">
-                                <input class="form-control me-2" type="search" placeholder="busqueda de producto" aria-label="Search">
+                                
+                                <input class="form-control me-2" name="search" type="search" placeholder="busqueda de producto" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Buscar</button>
                               </form>
                               </ul>

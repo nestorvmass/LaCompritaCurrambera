@@ -13,11 +13,25 @@ class InvitadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $productos['productos'] = Producto::paginate(10);
-        return view('invitados.index', $productos);
+        
+        if($request->get('search')){
+            $query = trim($request->get('search'));
+            // return response()->json($query);
+            $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
+            ->orderBy('nom_producto', 'asc')
+            ->get();
+            return view('invitados.index', $productos);
+
+
+        }else{
+            $productos['productos'] = Producto::paginate(10);
+            return view('invitados.index', $productos);
+        }
+
+       
     }
 
     /**

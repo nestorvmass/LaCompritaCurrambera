@@ -17,6 +17,7 @@ class ProductoController extends Controller
         //Se debe agregar la variable del usuario vendedor
 
         $productos['productos'] = Producto::paginate(10);
+       
         return view('productos.index', $productos);
     }
 
