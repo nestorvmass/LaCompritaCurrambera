@@ -8,8 +8,12 @@
 
     <div class="container">
         <h1 class="text-center">Listado de productos</h1>
+        <div class="text-center">
+        <a class="btn btn-success" href="{{ url('producto/create') }}">Crear Producto</a>
+        </div>
         <div class="row">
                 @foreach ($productos as $producto)
+                @if (Auth::user()->id == $producto->id_vendedor)
                     <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{ asset('storage'.'/'.$producto->imagen_producto) }}"  alt="...">
                         <div class="card-body">
@@ -56,6 +60,8 @@
                         
                         </div>
                     </div>
+                @endif
+                    
                 @endforeach
         </div>
     </div>
