@@ -34,10 +34,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     @if (Auth::check())
-                        
-                    
-                    {{-- <ul class="navbar-nav mr-auto"> --}}
-                    {{-- </ul> --}}
                     <div class="container-fluid">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
@@ -58,7 +54,7 @@
                                 <li><a class="dropdown-item" href="#">Crear</a></li>
                                 <li><a class="dropdown-item" href="#">Modificar</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Something elsse herdwdwde</a></li>
                               </ul>
                             </li>
                             <li class="nav-item">
@@ -71,6 +67,7 @@
                           </form>
                         </div>
                       </div>
+                      
                     @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -110,10 +107,6 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>

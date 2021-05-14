@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\InvitadosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,9 @@ use App\Http\Controllers\ProductoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -27,7 +29,8 @@ Route::get('/', function () {
 
 // Route::get('/producto/create', [ProductoController::class, 'create']);
 
-Route::resource('producto', ProductoController::class);
 Auth::routes();
+Route::resource('/', InvitadosController::class);
+Route::resource('producto', ProductoController::class)->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
