@@ -135,7 +135,7 @@ class ProductoController extends Controller
             // se debe modificar esto se debe agregar
             $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
         }
-       
+        // return response()->json($data);
         Producto::where('id', '=',$id)->update($productodata);
 
         if( array_key_exists('publicar', $data)){
