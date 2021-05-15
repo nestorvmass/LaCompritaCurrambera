@@ -28,14 +28,8 @@
 
     <p>Recuerda, aun tu producto no puede ser visto por el publico, debes ingresar a la plataforma y dirigirte a "mis productos" y darle publicar</p>
     {{-- Eliminacion --}}
-    @elseif(array_key_exists('delete', $array))
-        <p>Haz eliminado un producto exitosamente</p>
-        <h2>Detalle del producto: </h2>
-        <p>Nombre: {{ $array['nom_producto'] }}</p>
-        <p>Precio: {{ $array['precio_producto'] }}</p>
-        <p>Unidades disponibles: {{ $array['stock_producto'] }}</p>
-        <p>Recuerda, aun tu producto no puede ser visto por el publico, debes ingresar a la plataforma y dirigirte a "mis productos" y darle publicar</p>
-        
+    @else
+        Correo de ejemplo
     @endif
 
 </body>

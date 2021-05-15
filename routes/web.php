@@ -37,7 +37,7 @@ Route::resource('producto', ProductoController::class)->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Route::get('send', function(){
-    $data['delete'] = 1;
+    $data['example'] = 1;
     $correo = new mailcontroller($data);
     Mail::to('mass.nestor@gmail.com')->send($correo);
     return("Mensaje enviado");
