@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InvitadosController;
-
+use App\Mail\mailcontroller;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,11 @@ Route::resource('/', InvitadosController::class);
 Route::resource('producto', ProductoController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+// Route::get('send', function(){
+//     $correo = new mailcontroller;
+//     Mail::to('mass.nestor@gmail.com')->send($correo);
+//     return("Mensaje enviado");
+// });
+
+

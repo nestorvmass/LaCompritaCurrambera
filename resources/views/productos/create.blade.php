@@ -46,6 +46,8 @@
                 <label for="imagen_producto	" class="form-label">Imagen del producto</label>
                 <input class="form-control" type="file" name="imagen_producto" id="imagen_producto" required>
             </div>
+            <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
+            <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
 
             <div class="row g-3">
                 <div class="form-floating col-md-4 ">

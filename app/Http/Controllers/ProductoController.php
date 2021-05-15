@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\mailcontroller;
 use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\Mail;
 
 class ProductoController extends Controller
 {
@@ -33,7 +36,7 @@ class ProductoController extends Controller
 
 
         }else{
-            $productos['productos'] = Producto::paginate(10);
+            $productos['productos'] = Producto::paginate(20);
             return view('productos.index', $productos);
         }
     }
@@ -59,9 +62,15 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-        $productodata = request()->except('_token');
-        $productodata['id_vendedor'] = 1; // Pendiente el id del vendedor
+        
 
+        // $destinatario = request()->only('email');
+        $destinatario = request()->only('email');
+        $data = request()->except('_token');
+
+        $productodata = request()->except('_token','email','name');
+        $productodata['id_vendedor'] = 1; // Pendiente el id del vendedor
+        // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
             $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
@@ -69,7 +78,9 @@ class ProductoController extends Controller
         $productodata['estado_producto'] = False;
         Producto::insert($productodata);
         // return response()->json($productodata);
-
+        $data['create'] = 1;
+        $correo = new mailcontroller($data);
+        Mail::to($destinatario)->send($correo);
         return redirect('producto');
     }
 
@@ -108,13 +119,19 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $productodata = request()->except(['_token','_method']);
+        $destinatario = request()->only('email');
+        $data = request()->except('_token');
+        $productodata = request()->except(['_token','_method','email','name']);
         // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
             $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
         }
+
         Producto::where('id', '=',$id)->update($productodata);
+        $data['update'] = 1;
+        $correo = new mailcontroller($data);
+        Mail::to($destinatario)->send($correo);
         
         return redirect('producto');
     }
@@ -147,7 +164,23 @@ class ProductoController extends Controller
     {
         //
 
-        Producto::destroy($id);
+        $data['delete'] = 1;
+        $producto =  Producto::where('id',$id)->get();
+        $id_vendedor1 = $producto[0]['id_vendedor'];
+        $usuario= User::where('id', '=', $id_vendedor1)->get();
+
+        // Data para enviar correo
+        $destinatario = $usuario[0]['email'];
+        $data['name'] = $usuario[0]['name'];
+
+        $data['nom_producto'] = $producto[0]['nom_producto'];
+        $data['precio_producto'] = $producto[0]['precio_producto'];
+        $data['stock_producto'] = $producto[0]['stock_producto'];
+      
+        
+        $correo = new mailcontroller($data);
+        Mail::to($destinatario)->send($correo);
+        // Producto::destroy($id);
         return redirect('producto');
     }
 }

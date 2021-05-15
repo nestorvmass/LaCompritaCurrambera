@@ -51,7 +51,7 @@
                                             {{method_field('DELETE')}}
                                             <div class="col">
                                             
-                                                <input class="btn btn-danger btn-md" onclick="return confirm('DEsea borrar?')" type="submit" value="Eliminar">
+                                                <input class="btn btn-danger btn-md" onclick="return confirm('Desea borrar?')" type="submit" value="Eliminar">
                                             </div>
                                         
                                          </form>
