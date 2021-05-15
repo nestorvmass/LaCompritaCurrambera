@@ -27,7 +27,11 @@ class InvitadosController extends Controller
 
 
         }else{
-            $productos['productos'] = Producto::paginate(10);
+            // $productos['productos'] = Producto::paginate(10);
+            // return view('invitados.index', $productos);
+            
+            $productos['productos'] =  Producto::where('estado_producto', '=', "1")->get();
+            // return response()->json($productos);
             return view('invitados.index', $productos);
         }
 
