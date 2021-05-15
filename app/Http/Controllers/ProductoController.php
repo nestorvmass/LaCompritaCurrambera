@@ -78,7 +78,7 @@ class ProductoController extends Controller
 
         $productodata = request()->except('_token','email','name');
         $productodata['id_vendedor'] = 1; // Pendiente el id del vendedor
-        return response()->json($productodata);
+        // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
             $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
