@@ -1,4 +1,4 @@
-@extends('layaout\base')
+@extends('layaout.base')
 
 @section('titulopagina')
     inicio
