@@ -38,6 +38,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('send', function(){
     $data['example'] = 1;
+    $data['name']= "ejemplo";
     $correo = new mailcontroller($data);
     Mail::to('mass.nestor@gmail.com')->send($correo);
     return("Mensaje enviado");
