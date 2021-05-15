@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'mausilvera4@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'villafanenestor@coruniamericana.edu.co'),
         'name' => env('MAIL_FROM_NAME', 'La comprita'),
     ],
 
