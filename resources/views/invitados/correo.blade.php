@@ -42,7 +42,7 @@
         <p>Precio: {{ $array['precio_producto'] }}</p>
         <p>Unidades disponibles: {{ $array['stock_producto'] }}</p>
     @else
-        Correo de ejemplo
+        Correo de prueba
     @endif
 
 </body>
