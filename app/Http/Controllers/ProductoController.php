@@ -129,7 +129,7 @@ class ProductoController extends Controller
         //
         $destinatario = request()->only('email');
         $data = request()->except('_token');
-        $productodata = request()->except(['_token','_method','email','name','estado_producto', 'publicar']);
+        $productodata = request()->except(['_token','_method','email','name', 'publicar']);
         // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
