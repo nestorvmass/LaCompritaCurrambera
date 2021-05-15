@@ -48,6 +48,8 @@
             </div>
             <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
             <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
+            <input hidden type="text" name="id_vendedor" id="id_vendedor" value="{{ Auth::user()->id }}">
+
 
             <div class="row g-3">
                 <div class="form-floating col-md-4 ">

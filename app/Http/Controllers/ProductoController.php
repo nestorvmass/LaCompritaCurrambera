@@ -76,8 +76,8 @@ class ProductoController extends Controller
         $destinatario = request()->only('email');
         $data = request()->except('_token');
 
-        $productodata = request()->except('_token','email','name');
-        $productodata['id_vendedor'] = 1; // Pendiente el id del vendedor
+        $productodata = request()->except('_token','email','name','id_vendedor');
+        $productodata['id_vendedor'] = $data['id_vendedor']; // Pendiente el id del vendedor
         // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
