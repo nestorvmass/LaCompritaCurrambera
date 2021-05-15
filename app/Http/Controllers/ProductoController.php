@@ -86,9 +86,9 @@ class ProductoController extends Controller
         $productodata['estado_producto'] = False;
         Producto::insert($productodata);
         // return response()->json($productodata);
-        // $data['create'] = 1;
-        // $correo = new mailcontroller($data);
-        // Mail::to($destinatario)->send($correo);
+        $data['create'] = 1;
+        $correo = new mailcontroller($data);
+        Mail::to($destinatario)->send($correo);
         return redirect('producto');
     }
 
@@ -129,17 +129,46 @@ class ProductoController extends Controller
         //
         $destinatario = request()->only('email');
         $data = request()->except('_token');
-        $productodata = request()->except(['_token','_method','email','name']);
+        $productodata = request()->except(['_token','_method','email','name','estado_producto', 'publicar']);
         // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
             $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
         }
-
+       
         Producto::where('id', '=',$id)->update($productodata);
-        $data['update'] = 1;
-        $correo = new mailcontroller($data);
-        Mail::to($destinatario)->send($correo);
+
+        if( array_key_exists('publicar', $data)){
+            $data['publicar'] = 1;
+            $producto =  Producto::where('id',$id)->get();
+            $id_vendedor1 = $producto[0]['id_vendedor'];
+            $usuario= User::where('id', '=', $id_vendedor1)->get();
+
+            // Data para enviar correo
+            $destinatario = $usuario[0]['email'];
+            $data['name'] = $usuario[0]['name'];
+
+            $data['nom_producto'] = $producto[0]['nom_producto'];
+            $data['precio_producto'] = $producto[0]['precio_producto'];
+            $data['stock_producto'] = $producto[0]['stock_producto'];
+        
+            
+            $correo = new mailcontroller($data);
+            Mail::to($destinatario)->send($correo);
+            
+
+            // *****************
+            // $producto =  Producto::where('id',$id)->get();
+            // $data['publicar'] = 1;
+            // $correo = new mailcontroller($data);
+            // Mail::to($destinatario)->send($correo);
+
+       }else{
+            $data['update'] = 1;
+            $correo = new mailcontroller($data);
+            Mail::to($destinatario)->send($correo);
+       }
+        
         
         return redirect('producto');
     }
@@ -188,7 +217,7 @@ class ProductoController extends Controller
         
         $correo = new mailcontroller($data);
         Mail::to($destinatario)->send($correo);
-        // Producto::destroy($id);
+        Producto::destroy($id);
         return redirect('producto');
     }
 }

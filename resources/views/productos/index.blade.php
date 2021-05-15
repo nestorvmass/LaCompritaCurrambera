@@ -27,6 +27,9 @@
                                             @csrf
                                             {{method_field('PATCH')}}
                                             <input type="number" hidden name="estado_producto" id="estado_producto" value="1">
+                                            <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
+                                            <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
+                                            <input hidden type="text" name="publicar" id="publicar" value="1">
                                             <input type="submit"class="btn btn-primary btn-md" value="Publicar">
                                         </form>
                                     </div>
@@ -50,7 +53,8 @@
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <div class="col">
-                                            
+                                                <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
+                                                <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
                                                 <input class="btn btn-danger btn-md" onclick="return confirm('Desea borrar?')" type="submit" value="Eliminar">
                                             </div>
                                         

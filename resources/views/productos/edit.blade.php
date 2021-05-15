@@ -51,6 +51,7 @@
                 </div>
                 <input class="form-control" type="file" name="imagen_producto" id="imagen_producto">
             </div>
+            <input hidden type="text" name="publicar" id="publicar" value="1">
             <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
             <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
 
