@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2021 a las 23:20:08
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 7.4.18
+-- Tiempo de generación: 15-05-2021 a las 16:54:54
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -97,15 +97,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `id_vendedor`, `nom_producto`, `precio_producto`, `stock_producto`, `desc_producto`, `imagen_producto`, `estado_producto`, `created_at`, `updated_at`) VALUES
-(4, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/9nJac0B2OmcNN4NxaEtMQ6x0GLrzzxVaOHoYTtzp.jpg', 0, NULL, NULL),
-(5, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/blpokP6LS34ejdKzNXxgUN03QcwBPgT7MBAaShX0.jpg', 0, NULL, NULL),
-(6, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/WLehjoo9bYCb9I9Kx4pIJ6lMi3xIEk4TYo8L5Zv6.jpg', 0, NULL, NULL),
-(7, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/qZWGHJrIixZfsnD1YfiXwEWAvbiXKsB9lypWEuh4.jpg', 0, NULL, NULL),
-(8, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/hteO5QbNjFfKqsoRu8whQCShOP8coEG2Dps4JO1m.jpg', 0, NULL, NULL),
-(9, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/G1XjC9C7UOgNX2HtsRckKrGtOOmmpdACFjvTgxMY.jpg', 0, NULL, NULL),
-(10, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/oc6GVwzUWzdxu5gb9rOhowe6XfgLCWoXu4ERqxL4.jpg', 0, NULL, NULL),
-(11, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/D3DUkwsk25A0AF4u6nJGsroQVRjIJnrUiITtkfpX.jpg', 0, NULL, NULL),
-(12, 1, 'PC GAMER', 1200000, 5, 'PC GAMER\r\nINLCUYE:\r\nmouse\r\nteclado', 'uploads/pmlbM5wM4jOvDT1rdgag0v9YaF0f3HZlvTJHqQDr.jpg', 0, NULL, NULL);
+(46, 1, 'SILLA GAMER', 390000, 3, 'SILLA PARA GAMERS', 'uploads/E4u1m34fuNPRLarfAlaDRnLIj60T8OIN1NFtGOgT.jpg', 1, NULL, '2021-05-15 19:46:52'),
+(47, 1, 'MESEDORA', 150000, 3, '3', 'uploads/xZkfvkZxR7FLbYUEi2wMF12kP1D6cIRkrW0Eq7QT.png', 1, NULL, '2021-05-15 19:47:14'),
+(51, 3, 'SANDUCHERA', 100000, 12, 'Sanduchera para deliciosos sanduches', 'uploads/PwsZZjz42ZhhPxl3ictt9hfO4yGStU2jmBrk1oUC.jpg', 1, NULL, '2021-05-15 19:40:24');
 
 -- --------------------------------------------------------
 
@@ -123,6 +117,15 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Nestor', 'mass.nestor@gmail.com', NULL, '$2y$10$2ljS8BdItXra1g1Up1eTL.gT5N/DUstwTRd6BGgJUnTOFGDvG/uJu', NULL, '2021-05-13 08:35:14', '2021-05-13 08:35:14'),
+(2, 'Miguel Rodriguez', 'go@go.com', NULL, '$2y$10$gXTRMm.SnCRM84c5JGmrhuRtJVV1avR0In3TUG21biSRqfxBzgHFe', NULL, '2021-05-14 10:52:04', '2021-05-14 10:52:04'),
+(3, 'Patricio', 'el-n01@hotmail.com', NULL, '$2y$10$AZtyw5hQzMlVgghb1Nf4xusdovhNcoNTAakI9IJUUEqgCVNtsVnOy', NULL, '2021-05-15 18:30:24', '2021-05-15 18:30:24');
 
 --
 -- Índices para tablas volcadas
@@ -180,13 +183,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -60,6 +60,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -67,9 +69,15 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
+                
+            </div>
+
+            <div class="text-center">
+                <label class="col-md-4 col-form-label text-md-center ">Por favor ingresar un correo real para recibir las notificacioens</label>
             </div>
         </div>
     </div>
