@@ -79,9 +79,9 @@ class ProductoController extends Controller
         $productodata['estado_producto'] = False;
         Producto::insert($productodata);
         // return response()->json($productodata);
-        $data['create'] = 1;
-        $correo = new mailcontroller($data);
-        Mail::to($destinatario)->send($correo);
+        // $data['create'] = 1;
+        // $correo = new mailcontroller($data);
+        // Mail::to($destinatario)->send($correo);
         return redirect('producto');
     }
 
