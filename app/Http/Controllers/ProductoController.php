@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\mailcontroller;
+// use App\Mail\mailcontroller;
 use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\Mail;
+// use Illuminate\support\Facades\Mail;
+
+use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\InvitadosController;
+use App\Mail\mailcontroller;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class ProductoController extends Controller
