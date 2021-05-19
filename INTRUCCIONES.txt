@@ -1,0 +1,12 @@
+Proyecto realizado por Nestor Villafañe y Jenifer Perez
+
+link de la aplicacion web: http://limitless-harbor-70414.herokuapp.com/
+
+1. se debe importar la base "lacomprita.sql"
+2. ejecutar "composer install" para instalar dependencias
+3. ejecutar "php artisan storage:link" para que se puedan ver las imagenes guardadas
+4. registrarse con un correo real, para que lleguen las notificaciones. 
+5. apareceran productos de los otros usuarios que los han creado.
+
+
+Aun no esta desarrollado el modulo para administracion para los prodcutos creados por todos los vendedores
