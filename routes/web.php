@@ -33,8 +33,12 @@ use Illuminate\Support\Facades\Mail;
 Auth::routes();
 Route::resource('/', InvitadosController::class);
 Route::resource('producto', ProductoController::class)->middleware('auth');
+// Route::resource('')
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+
+
 
 Route::get('send', function(){
     $data['example'] = 1;

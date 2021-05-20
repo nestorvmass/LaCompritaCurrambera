@@ -19,17 +19,11 @@ class InvitadosController extends Controller
         
         if($request->get('search')){
             $query = trim($request->get('search'));
-            // return response()->json($query);
-            $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
-            ->orderBy('nom_producto', 'asc')
-            ->get();
-            return view('invitados.index', $productos);
-
+           return($this->searchByName($query));
 
         }else{
             // $productos['productos'] = Producto::paginate(10);
             // return view('invitados.index', $productos);
-            
             $productos['productos'] =  Producto::where('estado_producto', '=', "1")->get();
             // return response()->json($productos);
             return view('invitados.index', $productos);
@@ -102,5 +96,19 @@ class InvitadosController extends Controller
     public function destroy(invitados $invitados)
     {
         //
+    }
+
+    // external Methods or our methods
+
+    protected function searchByName($query){
+            $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
+            ->orderBy('nom_producto', 'asc')
+            ->get();
+            // echo $productos[0];
+            if(empty($productos[0])){
+                return view('invitados.404');
+            }else{
+                return view('invitados.index', $productos);
+            }
     }
 }
