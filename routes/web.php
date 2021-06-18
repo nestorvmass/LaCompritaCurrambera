@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InvitadosController;
 use App\Mail\mailcontroller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,7 @@ Auth::routes();
 
 Route::get('producto', [ProductoController::class, 'index']);
 Route::get('/', [ProductoController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Route::group(['middleware' =>'auth'], function(){
     Route::get('producto/create', [ProductoController::class, 'create']);
@@ -48,7 +51,6 @@ Route::group(['middleware' =>'auth'], function(){
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 // Route::get('send', function(){
 //     $data['example'] = 1;
