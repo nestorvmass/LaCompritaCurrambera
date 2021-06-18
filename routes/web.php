@@ -31,17 +31,31 @@ use Illuminate\Support\Facades\Mail;
 // Route::get('/producto/create', [ProductoController::class, 'create']);
 
 Auth::routes();
-Route::resource('/', InvitadosController::class);
-Route::resource('producto', ProductoController::class)->middleware('auth');
+// Route::resource('/', InvitadosController::class);
+// Route::resource('producto', ProductoController::class)->middleware('auth');
+
+Route::get('producto', [ProductoController::class, 'index']);
+Route::get('/', [ProductoController::class, 'index']);
+
+Route::group(['middleware' =>'auth'], function(){
+    Route::get('producto/create', [ProductoController::class, 'create']);
+    Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit']);
+    Route::patch('/producto/{producto}', [ProductoController::class, 'update']);
+    Route::delete('/producto/{producto}', [ProductoController::class, 'destroy']);
+    
+
+
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::get('send', function(){
-    $data['example'] = 1;
-    $data['name']= "ejemplo";
-    $correo = new mailcontroller($data);
-    Mail::to('mass.nestor@gmail.com')->send($correo);
-    return("Mensaje enviado");
-});
+// Route::get('send', function(){
+//     $data['example'] = 1;
+//     $data['name']= "ejemplo";
+//     $correo = new mailcontroller($data);
+//     Mail::to('mass.nestor@gmail.com')->send($correo);
+//     return("Mensaje enviado");
+// });
 
 

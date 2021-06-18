@@ -8,12 +8,15 @@
 
     <div class="container">
         <h1 class="text-center">Listado de productos</h1>
-        <div class="text-center">
-        <a class="btn btn-success" href="{{ url('producto/create') }}">Crear Producto</a>
-        </div>
+        @if (Auth::user())
+            <div class="text-center">
+                <a class="btn btn-success" href="{{ url('producto/create') }}">Crear Producto</a>
+            </div>
+        @endif
         <div class="row">
                 @foreach ($productos as $producto)
-                @if (Auth::user()->id == $producto->id_vendedor)
+                @if (Auth::user())
+                     @if (Auth::user()->id == $producto->id_vendedor)
                     <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="{{ asset('storage'.'/'.$producto->imagen_producto) }}"  alt="...">
                         <div class="card-body">
@@ -67,8 +70,24 @@
                         
                         </div>
                     </div>
-                @endif
+                    @endif
                     
+                @else
+                    <div class="card" style="width: 18rem;">
+                            <img class="card-img-top"  src="{{ asset('storage'.'/'.$producto->imagen_producto) }}"  alt="{{$producto->nom_producto}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$producto->nom_producto}}</h5>
+                                <p class="card-text">Precio: ${{$producto->precio_producto}}</p>
+                                <p class="card-text">Disponibles: {{$producto->stock_producto}}</p>
+                                <p>else</p>
+                                <div class="row">
+                                    
+                                </div>
+                            
+                            </div>
+                        </div>
+                @endif
+
                 @endforeach
         </div>
     </div>
