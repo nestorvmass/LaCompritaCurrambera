@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvitadosController;
 use App\Mail\mailcontroller;
 use Illuminate\Support\Facades\Mail;
@@ -45,8 +46,7 @@ Route::group(['middleware' =>'auth'], function(){
     Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit']);
     Route::patch('/producto/{producto}', [ProductoController::class, 'update']);
     Route::delete('/producto/{producto}', [ProductoController::class, 'destroy']);
-    
-
+    Route::resource('admin', AdminController::class);
 
 });
 
