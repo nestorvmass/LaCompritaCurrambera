@@ -43,10 +43,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' =>'auth'], function(){
     Route::get('producto/create', [ProductoController::class, 'create']);
+    // Ruta para almacenar en la base 
+    Route::post('/producto', [ProductoController::class, 'store']);
     Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit']);
     Route::patch('/producto/{producto}', [ProductoController::class, 'update']);
     Route::delete('/producto/{producto}', [ProductoController::class, 'destroy']);
-    Route::resource('admin', AdminController::class);
+    Route::resource('admin', AdminController::class)->middleware('can:admin.index');
 
 });
 
