@@ -1,4 +1,4 @@
-Proyecto realizado por Nestor Villafañe y Jenifer Perez
+Archivo de requisitos "Requisitos.xlsx"
 
 link de la aplicacion web: http://limitless-harbor-70414.herokuapp.com/
 
@@ -8,5 +8,3 @@ link de la aplicacion web: http://limitless-harbor-70414.herokuapp.com/
 4. registrarse con un correo real, para que lleguen las notificaciones. 
 5. apareceran productos de los otros usuarios que los han creado.
 
-
-Aun no esta desarrollado el modulo para administracion para los prodcutos creados por todos los vendedores

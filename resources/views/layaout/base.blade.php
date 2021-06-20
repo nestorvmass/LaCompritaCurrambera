@@ -80,9 +80,18 @@
                             {{ Auth::user()->name }}
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @can('admin.index')
                             <li>
-                              <a class="nav-link" href="{{ url('producto') }}">Mis Producto</a>
+                              <a class="nav-link" href="{{ route( 'admin.index') }}">Administracion de usuario</a>
                             </li>
+                              
+                            @endcan
+                            @can('producto.create')
+                              
+                            <li>
+                              <a class="nav-link" href="{{ url('producto') }}">Mis Productos</a>
+                            </li>
+                            @endcan
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                               onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -97,6 +106,7 @@
               </div>
           </div>
       </nav>
+    
     @yield('contenido')
 
 </body>

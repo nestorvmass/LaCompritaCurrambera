@@ -54,7 +54,7 @@
             <div class="row g-3">
                 <div class="form-floating col-md-4 ">
                     <input class="btn btn-success " type="submit" value="Guardar">
-                    <input class="btn btn-warning" type="submit"  value="Cancelar">
+                    <a class="btn btn-warning" href="{{url('producto')}}">Cancelar </a>
                 </div>
             </div>
         </form>

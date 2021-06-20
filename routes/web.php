@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvitadosController;
 use App\Mail\mailcontroller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,16 +35,32 @@ use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
 Route::resource('/', InvitadosController::class);
-Route::resource('producto', ProductoController::class)->middleware('auth');
+// Route::resource('producto', ProductoController::class)->middleware('auth');
 
+Route::get('producto', [ProductoController::class, 'index']);
+// Route::get('/', [ProductoController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::get('send', function(){
-    $data['example'] = 1;
-    $data['name']= "ejemplo";
-    $correo = new mailcontroller($data);
-    Mail::to('mass.nestor@gmail.com')->send($correo);
-    return("Mensaje enviado");
+Route::group(['middleware' =>'auth'], function(){
+    Route::get('producto/create', [ProductoController::class, 'create']);
+    // Ruta para almacenar en la base 
+    Route::post('/producto', [ProductoController::class, 'store']);
+    Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit']);
+    Route::patch('/producto/{producto}', [ProductoController::class, 'update']);
+    Route::delete('/producto/{producto}', [ProductoController::class, 'destroy']);
+    // Route::resource('admin', AdminController::class)->middleware('can:admin.index');
+    Route::resource('admin', AdminController::class);
+
 });
+
+
+
+// Route::get('send', function(){
+//     $data['example'] = 1;
+//     $data['name']= "ejemplo";
+//     $correo = new mailcontroller($data);
+//     Mail::to('mass.nestor@gmail.com')->send($correo);
+//     return("Mensaje enviado");
+// });
 
 
