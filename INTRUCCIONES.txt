@@ -8,3 +8,5 @@ link de la aplicacion web: http://limitless-harbor-70414.herokuapp.com/
 4. registrarse con un correo real, para que lleguen las notificaciones. 
 5. apareceran productos de los otros usuarios que los han creado.
 
+
+

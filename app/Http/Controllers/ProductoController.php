@@ -101,15 +101,23 @@ class ProductoController extends Controller
         // $destinatario = request()->only('email');
         $destinatario = request()->only('email');
         $data = request()->except('_token');
-
+        
         $productodata = request()->except('_token','email','name','id_vendedor');
-        $productodata['id_vendedor'] = $data['id_vendedor']; // Pendiente el id del vendedor
-        // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
-            $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+            $file = $request->file('imagen_producto');
+            $file_name = $file->getClientOriginalName();
+            $path = $file->storeAs('uploads', $file_name, 's3');
+            // return response()->json($path);
+
+            $productodata['imagen_producto'] = $path;
+            
+            // $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+            // $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
         }
+        $productodata['id_vendedor'] = $data['id_vendedor']; // Pendiente el id del vendedor
         $productodata['estado_producto'] = False;
+        // return response()->json($productodata);
         Producto::insert($productodata);
         // return response()->json($productodata);
         $data['create'] = 1;
