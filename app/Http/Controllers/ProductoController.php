@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('can:producto.create')->only('create');
+    }
     /**
      * Display a listing of the resource.
      *

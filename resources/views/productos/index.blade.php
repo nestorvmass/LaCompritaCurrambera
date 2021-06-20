@@ -9,11 +9,15 @@
     <div class="container">
         <div class="block-heading"></div>
         <h1 class="text-center">Listado de productos</h1>
-        @if (Auth::user())
-            <div class="text-center">
-                <a class="btn btn-success" href="{{ url('producto/create') }}">Crear Producto</a>
-            </div>
-        @endif
+
+        @can('crear')
+            
+        <div class="text-center">
+            <a class="btn btn-success" href="{{ url('producto/create') }}">Crear Producto</a>
+        </div>
+        @else
+        <p>Not allowed</p>
+        @endcan
         <div class="block-heading">
 
             <div class="row">
@@ -57,18 +61,17 @@
                                         <div  class="col md-2">
                                             <a href="{{ url('/producto/'.$producto->id.'/edit')}}" class="btn btn-warning btn-md">Editar</a>
                                         </div>
-                                        <div class="col">
-                                            <form action="{{url('/producto/'.$producto->id)}}" method="post">
-                                                @csrf
-                                                {{method_field('DELETE')}}
-                                                <div class="col">
-                                                    <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
-                                                    <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
-                                                    <input class="btn btn-danger btn-md" onclick="return confirm('Desea borrar?')" type="submit" value="Eliminar">
-                                                </div>
-                                            
-                                             </form>
-                                        </div>
+                                            <div class="col">
+                                                <form action="{{url('/producto/'.$producto->id)}}" method="post">
+                                                    @csrf
+                                                    {{method_field('DELETE')}}
+                                                    <div class="col">
+                                                        <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
+                                                        <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
+                                                        <input class="btn btn-danger btn-md" onclick="return confirm('Desea borrar?')" type="submit" value="Eliminar">
+                                                    </div>
+                                                </form>
+                                            </div>
                                 </div>
                             
                             </div>

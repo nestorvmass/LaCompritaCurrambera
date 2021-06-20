@@ -11,6 +11,14 @@
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Employee Info</p>
         </div>
+
+        @if(session('status'))
+      
+            <div class="{{ session('class') }}" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 text-nowrap">
@@ -43,7 +51,39 @@
                                 <td>{{ $usuario->id }}</td>
                                 <td>{{ $usuario->name }}</td>
                                 <td>{{ $usuario->email }}</td>
-                                <td>Exam</td>
+                                Edicion
+                                <td>
+
+                                    @can('editar')
+                
+                                        {{-- Editar --}}
+                                        <div  class="col md-2">
+                                            <a href="{{ url('/admin/'.$usuario->id.'/edit')}}" class="btn btn-warning btn-md">Editar</a>
+                                        </div>
+                              
+                                    @endcan
+
+                                    @can('eliminar')
+                                        
+                                        {{-- Eliminar --}}
+
+                                        <div class="col">
+                                            <form action="{{url('/admin/'.$usuario->id)}}" method="post">
+                                                @csrf
+                                                {{method_field('DELETE')}}
+                                                <div class="col">
+                                                    <input hidden type="text" name="email" id="email" value="{{ Auth::user()->email }}">
+                                                    <input hidden type="text" name="name" id="name" value="{{ Auth::user()->name }}">
+                                                    <input class="btn btn-danger btn-md" onclick="return confirm('Desea borrar?')" type="submit" value="Eliminar">
+                                                </div>
+                                            
+                                            </form>
+                                        </div>
+                                    @endcan
+
+
+
+                                </td>
                             </tr>
                             
                         @endforeach

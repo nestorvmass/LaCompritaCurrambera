@@ -6,7 +6,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
-{
+{   
+
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.index')->only('index');
+        // $this->middleware('can:admin.index')->only('index');
+        // $this->middleware('can:admin.index')->only('index');
+        // $this->middleware('can:admin.index')->only('index');
+        // $this->middleware('can:admin.index')->only('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +29,6 @@ class AdminController extends Controller
 
         $usuarios['usuarios'] =  User::all();
         // return response()->json($usuarios);
-            // return response()->json($usuarios);
         return view('admin.index', $usuarios);
     }
 
@@ -63,6 +73,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         //
+        $usuario = User::find($id);
+        return view('admin.edit', compact('usuario'));
     }
 
     /**
@@ -75,6 +87,21 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $config['status'] = 'Operación exitosa';
+        $config['class'] = 'alert alert-success';
+                // return response()->json($request);
+        $initialdata = request()->except(['_token','_method']);
+        if($initialdata['confirm-password' ]== null && $initialdata['password'] == null){
+            $initialdata = request()->except(['_token','_method', 'confirm-password', 'password' ]);
+        }elseif($initialdata['confirm-password' ] != $initialdata['password'] ){
+            $config['status'] = 'Error, al intentar actualizar, las contraseñas no coinciden.';
+            $config['class'] = 'alert alert-danger';
+            return redirect('admin')->with($config);
+        }
+
+        User::where('id', '=',$id)->update($initialdata);
+        
+        return redirect('admin')->with($config);
     }
 
     /**

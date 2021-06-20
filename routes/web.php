@@ -48,7 +48,8 @@ Route::group(['middleware' =>'auth'], function(){
     Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit']);
     Route::patch('/producto/{producto}', [ProductoController::class, 'update']);
     Route::delete('/producto/{producto}', [ProductoController::class, 'destroy']);
-    Route::resource('admin', AdminController::class)->middleware('can:admin.index');
+    // Route::resource('admin', AdminController::class)->middleware('can:admin.index');
+    Route::resource('admin', AdminController::class);
 
 });
 
