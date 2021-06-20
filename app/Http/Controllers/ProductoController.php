@@ -167,7 +167,12 @@ class ProductoController extends Controller
         // return response()->json($productodata);
         if($request->hasFile('imagen_producto')){
             // se debe modificar esto se debe agregar
-            $productodata['imagen_producto']=$request->file('imagen_producto')->store('uploads', 'public');
+            $file = $request->file('imagen_producto');
+            $file_name = $file->getClientOriginalName();
+            $path = $file->storeAs('uploads', $file_name, 's3');
+            // return response()->json($path);
+
+            $productodata['imagen_producto'] = $path;
         }
         // return response()->json($data);
         Producto::where('id', '=',$id)->update($productodata);

@@ -22,7 +22,7 @@
                     @if (Auth::user())
                          @if (Auth::user()->id == $producto->id_vendedor)
                         <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="{{ asset('storage'.'/'.$producto->imagen_producto) }}"  alt="...">
+                                <img class="card-img-top"  src="{{Storage::disk('s3')->url($producto->imagen_producto)}}"  alt="{{$producto->nom_producto}}">
                             <div class="card-body">
                                 <h5 class="card-title">{{$producto->nom_producto}}</h5>
                                 <p class="card-text">Precio: $.{{$producto->precio_producto}}</p>
