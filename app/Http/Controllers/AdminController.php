@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {   
@@ -40,6 +43,8 @@ class AdminController extends Controller
     public function create()
     {
         //
+
+        return view('admin.create');
     }
 
     /**
@@ -51,6 +56,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         //
+
+        
     }
 
     /**
@@ -97,6 +104,11 @@ class AdminController extends Controller
             $config['status'] = 'Error, al intentar actualizar, las contraseñas no coinciden.';
             $config['class'] = 'alert alert-danger';
             return redirect('admin')->with($config);
+        }else if($initialdata['confirm-password' ] == $initialdata['password'] ){
+            $initialdata = request()->except(['_token','_method', 'confirm-password' ]);
+            $initialdata['password'] = bcrypt($request['password']);
+            User::where('id', '=',$id)->update($initialdata);
+            return redirect('admin')->with($config);
         }
 
         User::where('id', '=',$id)->update($initialdata);
@@ -112,6 +124,19 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $producto =  User::where('id',$id)->get();
+        $productos= Producto::where('id_vendedor', '=', $id)->count();
+        // return response()->json($productos);
+        if($productos >= 1){
+            $config['status'] = 'No se puede Eliminar el usuario porque tiene productos creados';
+            $config['class'] = 'alert alert-danger';
+            return redirect('admin')->with($config);
+        }elseif (Auth::user()->id == $id){
+            $config['status'] = 'No Eliminar su mismo usuario';
+            $config['class'] = 'alert alert-danger';
+            return redirect('admin')->with($config);
+        }
+        User::destroy($id);
+        return redirect('admin');
     }
 }

@@ -6,57 +6,78 @@
 
 @section('contenido')
 
-    {{-- id_vendedor, nombre producto, precio, cantidad stock, descripcion producto, estado --}}
-    <div class="container-md">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Creacion de nuevo vendedor</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                       
 
 
-        <h2 class='text-center d-grid gap-3'>Creacion de nuevo producto</h2>
-
-
-        {{-- formulario --}}
-        <form action="{{url('producto')}}" class="row g-7" method="POST" enctype="multipart/form-data">
-            @csrf            
-            {{-- Campo de Nombre de producto --}}
-            <div class="form-floating  col-md-4">
-                <input type="text" class="form-control" name="nom_producto" id="nom_producto" placeholder="name@example.com" required>
-                <label for="nom_producto">Nombre del producto</label>
-            </div>
-            <div class="row g-3">
-                {{-- campo de precio de producto --}}
-                <div class="form-floating col-md-4" >
-                    <input type="number" class="form-control" name="precio_producto" id="precio_producto" placeholder="..." required>
-                    <label for="precio_producto">Precio producto</label>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </form>
                 </div>
-                {{-- campo de cantidad disponible --}}
-                <div class="form-floating col-md-4">
-                    <input type="number" class="form-control" name="stock_producto" id="stock_producto" placeholder="..." required>
-                    <label for="stock_producto">Cantidad Disponible</label>
-                </div>
+                
             </div>
 
-            {{-- campo de descripcion de producto --}}
-            <div class="form-floating mt-4">
-                <textarea class="form-control" placeholder="..." name="desc_producto" id="desc_producto" style="height: 100px" required></textarea>
-                <label for="desc_producto">Descripcion Producto</label>
-            </div> 
-
-
-            {{-- campo de imagen de producto --}}
-            <div class="mb-4 mt-4 ">
-                <label for="imagen_producto	" class="form-label">Imagen del producto</label>
-                <input class="form-control" type="file" name="imagen_producto" id="imagen_producto" required>
+            <div class="text-center">
+                <label class="col-md-4 col-form-label text-md-center ">Por favor ingresar un correo real para recibir las notificacioens</label>
             </div>
-
-            <div class="row g-3">
-                <div class="form-floating col-md-4 ">
-                    <input class="btn btn-success " type="submit" value="Guardar">
-                    <input class="btn btn-warning" type="submit"  value="Cancelar">
-                </div>
-            </div>
-        </form>
-        
-
-
+        </div>
     </div>
+</div>
 
 @endsection

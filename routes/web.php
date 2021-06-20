@@ -34,11 +34,11 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/producto/create', [ProductoController::class, 'create']);
 
 Auth::routes();
-// Route::resource('/', InvitadosController::class);
+Route::resource('/', InvitadosController::class);
 // Route::resource('producto', ProductoController::class)->middleware('auth');
 
 Route::get('producto', [ProductoController::class, 'index']);
-Route::get('/', [ProductoController::class, 'index']);
+// Route::get('/', [ProductoController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Route::group(['middleware' =>'auth'], function(){

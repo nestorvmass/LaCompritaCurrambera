@@ -44,6 +44,7 @@ class ProductoController extends Controller
                 $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
                 ->orderBy('nom_producto', 'asc')
                 ->get();
+                // return response()->json($productos);
                 return view('productos.index', $productos);
     
     

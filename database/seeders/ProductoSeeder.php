@@ -23,7 +23,7 @@ class ProductoSeeder extends Seeder
         // $table->boolean('estado_producto');
 
         Producto::create([
-            'id_vendedor'      =>  '1',
+            'id_vendedor'      =>  '3',
             'nom_producto'      =>  'Mochila',
             'precio_producto'     =>  90000,
             'stock_producto'  =>  2,
@@ -34,7 +34,7 @@ class ProductoSeeder extends Seeder
 
         ]);
         Producto::create([
-            'id_vendedor'      =>  '2',
+            'id_vendedor'      =>  '3',
             'nom_producto'      =>  'Mesedora Veloz',
             'precio_producto'     =>  100000,
             'stock_producto'  =>  2,
@@ -54,5 +54,27 @@ class ProductoSeeder extends Seeder
             'estado_producto'  =>  1,
 
         ]);
+        Producto::create([
+            'id_vendedor'      =>  '3',
+            'nom_producto'      =>  'Mochila Artesanal',
+            'precio_producto'     =>  290000,
+            'stock_producto'  =>  3,
+            'imagen_producto'      =>  'uploads/YNp3Xt7TJd2AUqpTAYXbnzz9EqhEP6HJLYoE23uL.jpg',
+            'desc_producto'  =>  "Mochila Artesanal",
+            'estado_producto'  =>  1,
+
+        ]);
+        Producto::create([
+            'id_vendedor'      =>  '3',
+            'nom_producto'      =>  'Silla Gamer',
+            'precio_producto'     =>  800000,
+            'stock_producto'  =>  31,
+            'imagen_producto'      =>  'uploads/Fdp9JyG1Mk0daXlLfRt4KNEgASkvAmt0APPsxz6K.jpg',
+            'desc_producto'  =>  "Silla Gamer",
+            'estado_producto'  =>  1,
+
+        ]);
+
+        // Producto::factory(4)->create();
     }
 }

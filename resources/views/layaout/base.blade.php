@@ -88,9 +88,9 @@
                             @endcan
                             @can('producto.create')
                               
-                              <li>
-                                <a class="nav-link" href="{{ url('producto') }}">Mis Productos</a>
-                              </li>
+                            <li>
+                              <a class="nav-link" href="{{ url('producto') }}">Mis Productos</a>
+                            </li>
                             @endcan
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                               onclick="event.preventDefault();
