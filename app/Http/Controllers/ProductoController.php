@@ -36,42 +36,24 @@ class ProductoController extends Controller
         // $productos['productos'] = Producto::paginate(10);
        
         // return view('productos.index', $productos);
-        if(Auth::user()){
+    
             // return response()->json($request);
-            if($request->get('search')){
-                $query = trim($request->get('search'));
-                // return response()->json($query);
-                $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
-                ->orderBy('nom_producto', 'asc')
-                ->get();
-                // return response()->json($productos);
-                return view('productos.index', $productos);
-    
-    
-            }else{
-                $productos['productos'] = Producto::paginate(20);
-                return view('productos.index', $productos);
-            }
+        if($request->get('search')){
+            $query = trim($request->get('search'));
+            // return response()->json($query);
+            $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
+            ->orderBy('nom_producto', 'asc')
+            ->get();
+            return response()->json($productos);
+            return view('productos.index', $productos);
+
 
         }else{
-            if($request->get('search')){
-                $query = trim($request->get('search'));
-                // return response()->json($query);
-                $productos['productos'] =  Producto::where('nom_producto', 'LIKE', '%'.$query.'%')
-                ->orderBy('nom_producto', 'asc')
-                ->get();
-                return view('productos.index', $productos);
-    
-    
-            }else{
-                // $productos['productos'] = Producto::paginate(10);
-                // return view('productos.index', $productos);
-                
-                $productos['productos'] =  Producto::where('estado_producto', '=', "1")->get();
-                // return response()->json($productos);
-                return view('productos.index', $productos);
-            }
+            $productos['productos'] = Producto::paginate(20);
+            return view('productos.index', $productos);
         }
+
+
         
     }
 
